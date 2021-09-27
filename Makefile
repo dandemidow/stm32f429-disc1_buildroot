@@ -4,6 +4,7 @@ system_image = stm32f769i-disco_system.uImage
 dir_download = downloads
 dir_configs = configs
 dir_buildroot = buildroot
+dir_buildroot_patch = board/stmicroelectronics/stm32f429-disco/patches
 dir_patch = patches
 
 bootstrap:
@@ -12,7 +13,7 @@ bootstrap:
 	wget -O $(dir_download)/$(archive_buildroot) $(url_buildroot)
 	tar zxvf $(dir_download)/$(archive_buildroot) -C $(dir_buildroot) --strip-components=1
 	cp $(dir_configs)/buildroot $(dir_buildroot)/.config
-	cp -r $(dir_patch)/* $(dir_buildroot)
+	cp -r $(dir_patch)/* $(dir_buildroot)/$(dir_buildroot_patch)
 
 build:
 	make -j10 -C $(dir_buildroot)
